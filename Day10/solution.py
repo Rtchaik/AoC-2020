@@ -28,5 +28,5 @@ def part1(data):
 
 
 def part2(data):
-    multic = {1: 1, 2: 2, 3: 4, 4: 7}
-    return prod(multic[num[1]] for num in data if num[0] == 1)
+    tribonnacci = (1, 1, 2, 4, 7)
+    return prod(tribonnacci[num[1]] for num in data if num[0] == 1)
