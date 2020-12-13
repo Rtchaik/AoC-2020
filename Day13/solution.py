@@ -4,7 +4,7 @@ from itertools import count
 def solveDay(my_file):
     data = parse_data(my_file)
     print('Part 1: ', part1(data))
-    print('Part 2: ', part2(data))
+    print('Part 2: ', part2(data[1]))
 
 
 def parse_data(my_file):
@@ -22,14 +22,12 @@ def part1(data):
                 return idx * bus
 
 
-def part2(data):
-    nums = sorted(data[1].keys(), reverse=True)
-    start_idx, st = 1, 1
-    for current in nums[1:]:
-        shift = (data[1][nums[0]] - data[1][current]) % current
-        for idx in count(start_idx, st):
-            if (nums[0] * idx) % current == shift:
-                start_idx = idx
-                st *= current
+def part2(buses):
+    start_idx, steps = 0, 1
+    for bus, offset in sorted(buses.items(), reverse=True):
+        for tstamp in count(start_idx, steps):
+            if not (tstamp + offset) % bus:
+                start_idx = tstamp
+                steps *= bus
                 break
-    return nums[0] * start_idx - data[1][nums[0]]
+    return tstamp
