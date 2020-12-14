@@ -1,4 +1,5 @@
 from itertools import count
+from operator import mul
 
 
 def solveDay(my_file):
@@ -16,10 +17,7 @@ def parse_data(my_file):
 
 
 def part1(data):
-    for idx in count(1):
-        for bus in data[1].keys():
-            if not (data[0] + idx) % bus:
-                return idx * bus
+    return mul(*min([-data[0] % bus, bus] for bus in data[1]))
 
 
 def part2(buses):
