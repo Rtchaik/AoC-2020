@@ -22,7 +22,7 @@ def part2(data):
 
 def memory_game(current, history, limit=2020):
     for idx in range(len(history) + 1, limit):
-        prev_idx = history.get(current, 0)
+        prev_idx = history.get(current, idx)
         history[current] = idx
-        current = idx - prev_idx if prev_idx else 0
+        current = idx - prev_idx
     return current
