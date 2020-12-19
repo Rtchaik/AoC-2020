@@ -42,9 +42,6 @@ def make_math(expres, mode=True, idx=0, multic=False):
             subtotal, idx = make_math(expres, mode, idx + 1, False)
             total = oper(total, subtotal)
         elif ch == ')':
-            if multic:
-                return total, idx - 1
-            else:
-                return total, idx
+            return (total, idx - 1) if multic else (total, idx)
         idx += 1
     return total, idx
